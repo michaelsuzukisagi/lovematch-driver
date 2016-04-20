@@ -102,7 +102,7 @@ public class ExecuteProcess extends AbstractEventProcessor
         
         // Locate the process
         ProcessData process = processDataDAO.findProcessByName(processName);
-        // A quick double-check of the inbound values
+        // A quick double-check of the in bound values
         EventResult result = null;
         if (process == null)
         {

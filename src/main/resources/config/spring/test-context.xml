@@ -49,28 +49,30 @@
             </list>
         </constructor-arg>
     </bean>
-
     <!--                 -->
-    <!-- Test Files      -->
+    <!-- Support Service -->
     <!--                 -->
-    <!--
-        Contrived example in order to demonstrate how test files can be obtained.
-        The LocalTestFileService can also be used but it limits how your tests can be distributed.
-    -->
-    <bean id="fileDataService" class="org.alfresco.bm.file.FileDataServiceImpl">
+    <bean id="httpClientProvider" class="org.alfresco.http.SharedHttpClientProvider">
+         <constructor-arg name="maxNumberOfConnections" value="${http.connection.max}" />
+         <constructor-arg name="connectionTimeoutMs" value="${http.connection.timeoutMs}" />
+         <constructor-arg name="socketTimeoutMs" value="${http.socket.timeoutMs}" />
+         <constructor-arg name="socketTtlMs" value="${http.socket.ttlMs}" />
+    </bean>
+    <bean id="userDataService" class="org.alfresco.bm.user.UserDataServiceImpl">
         <constructor-arg name="db" ref="testMongoDB" />
-        <constructor-arg name="collection" value="${files.collection.name}" />
+        <constructor-arg name="collection" value="${users.collectionName}" />
     </bean>
-    <bean id="testFileService" class="org.alfresco.bm.file.FtpTestFileService">
-        <constructor-arg name="fileDataService" ref="fileDataService" />
-        <constructor-arg name="localDir" value="${files.cache.dir}" /> 
-        <constructor-arg name="ftpHost" value="${files.ftp.host}" /> 
-        <constructor-arg name="ftpPort" value="${files.ftp.port}" /> 
-        <constructor-arg name="ftpUsername" value="${files.ftp.username}" /> 
-        <constructor-arg name="ftpPassword" value="${files.ftp.password}" /> 
-        <constructor-arg name="ftpPath" value="${files.ftp.path}" /> 
+    <bean id="authenticationDetailsProvider" class="org.alfresco.bm.http.UserDataAutheticationDetailsProvider">
+        <constructor-arg name="userDataService" ref="userDataService" />
+        <constructor-arg name="adminUserName" value="${alfresco.adminUser}" />
+        <constructor-arg name="adminPassword" value="${alfresco.adminPwd}" />
     </bean>
-
+    <!-- Basic arguments to build event processors that use AuthenticatedHttpEventProcessor -->
+    <bean id="event.base.http" abstract="true" parent="event.base" >
+         <constructor-arg name="httpClientProvider" ref="httpClientProvider" />
+         <constructor-arg name="authenticationDetailsProvider" ref="authenticationDetailsProvider" />
+         <constructor-arg name="baseUrl" value="${alfresco.url}" />
+    </bean>
     <!--                 -->
     <!-- EventProcessors -->
     <!--                 -->
@@ -101,15 +103,22 @@
         <property name="chart" value="true" />
     </bean>
     <bean id="producer.process" class="org.alfresco.bm.event.producer.RedirectEventProducer" parent="producer.base" >
-        <constructor-arg name="newEventName" value="executeProcess" />
+        <constructor-arg name="newEventName" value="getLoveMatch" />
         <constructor-arg name="delay" value="1" />
     </bean>
-    <bean id="event.executeProcess" class="org.alfresco.bm.process.ExecuteProcess" parent="event.base" >
+    <bean id="event.getLoveMatch" class="org.alfresco.bm.process.GetLoveMatch" parent="event.base" >
+        <constructor-arg name="httpClientProvider" ref="httpClientProvider" />
+        <constructor-arg name="authDetailProvider" ref="authenticationDetailsProvider"/>
+        <constructor-arg name="baseUrl" value="${alfresco.url}" />
+        <constructor-arg name="numberOfCalls" value="${proc.processCount}"/>
+        <property name="chart" value="true" />
+    </bean>
+<!--     <bean id="event.executeProcess" class="org.alfresco.bm.process.ExecuteProcess" parent="event.base" >
         <constructor-arg name="sessionService" ref="sessionService" />
         <constructor-arg name="processDataDAO" ref="processDataDAO" />
         <constructor-arg name="testFileService" ref="testFileService" />
         <property name="chart" value="true" />
-    </bean>
+    </bean> -->
     <bean id="producer.processDone" class="org.alfresco.bm.event.producer.TerminateEventProducer" parent="producer.base" />
     
 </beans>
