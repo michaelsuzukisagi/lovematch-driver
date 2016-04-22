@@ -11,7 +11,9 @@ This project produces a WAR file that acts as a headless load driver application
 
 * Follow instructions for the <a href="https://wiki.alfresco.com/wiki/Benchmark_Framework_2.0#Benchmark_Server_Setup">Benchmark Server set up</a>.
 * Ensure that Love Match is running before starting <a href="https://github.com/michaelsuzukisagi/lovematch"> Love Match Sample</a>
-
+### The Love Match Driver
+The purpose of the love match driver is to fire a get request to the love match API and record the response time.
+This driver was created as part of the Demo that demonstrates how to benchmark an Alfresco add on.
 ### Running The Love Match Driver
 ```
 mvn tomcat7:run -Dmongo.config.host=127.0.0.1
