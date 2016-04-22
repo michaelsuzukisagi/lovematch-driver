@@ -14,7 +14,7 @@ This project produces a WAR file that acts as a headless load driver application
 
 ###The Love Match Driver
 
-The purpose of the love match driver is to fire a get request to the love match API and record the response time.
+The purpose of the love match driver is to fire HTTP Get requests to the love match API and record the response time.
 This driver was created as part of the Demo that demonstrates how to benchmark an Alfresco add on.
 
 ### Running The Love Match Driver
