@@ -10,7 +10,8 @@ Load tests the sample Alfresco WebScript with the Alfresco Benchmark framework.
 This project produces a WAR file that acts as a headless load driver application designed to run in Tomcat7.  It is used in conjunction with the <a href="https://github.com/AlfrescoBenchmark/alfresco-benchmark">Alfresco Benchmark Framework</a> application, which is a separate application containing a browser-based client that configures and controls test execution.
 
 * Follow instructions for the <a href="https://wiki.alfresco.com/wiki/Benchmark_Framework_2.0#Benchmark_Server_Setup">Benchmark Server set up</a>.
-* Ensure that Love Match is running before starting <a href="https://github.com/michaelsuzukisagi/lovematch"> Love Match Sample</a>
+* Ensure that <a href="https://github.com/michaelsuzukisagi/lovematch"> Love Match Sample</a> is
+running before starting the load test.
 
 ###The Love Match Driver
 
