@@ -1,7 +1,7 @@
 Demo Steps
 ==========
 
-### Setting up Love Match
+### Setting up Love Match Add-on
 - Checkout Love Match Sample.
 ```
 git clone https://github.com/michaelsuzukisagi/lovematch.git
@@ -11,7 +11,7 @@ git clone https://github.com/michaelsuzukisagi/lovematch.git
 cd into lovematch
 ./run.sh
 ```
-- Verify all running and that there are 4 users.
+- Verify love match add-on is running and that there are 4 users.
 ```
 http://localhost:8080/alfresco/service/sample/lovematch
 ```
@@ -41,7 +41,7 @@ https://github.com/michaelsuzukisagi/lovematch-driver.git
 ```
 mvn tomcat7:run -Dmongo.config.host=127.0.0.1
 ```
-- Check the driver is loaded by creating test and see in the Test Definition dropdown that it appears.
+- Check the driver is loaded by creating a new test. See in the Test Definition dropdown that it appears.
 
 ### Adding the benchmark drivers
 
@@ -54,4 +54,4 @@ cd signup
 ```
 mvn tomcat7:run -Dmongo.config.host=127.0.0.1
 ```
-- Check the driver is loaded by creating test and see in the Test Definition dropdown that it appears.
+- Check the driver is loaded by creating a new test. See in the Test Definition dropdown that it appears.
