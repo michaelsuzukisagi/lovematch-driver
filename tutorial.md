@@ -42,8 +42,18 @@ https://github.com/michaelsuzukisagi/lovematch-driver.git
 mvn tomcat7:run -Dmongo.config.host=127.0.0.1
 ```
 - Check the driver is loaded by creating a new test. See in the Test Definition dropdown that it appears.
+### Running the Love Match driver
+- Create a new load test LoveMatch.
+- Update the mongodb location.
+```
+mongo.test.host=127.0.0.1:27017
+```
+- Create a new test run with title run1 and description:Love Match load test with 4 users.
+- Run the test.
+- Once test completed download the results.
+- Copy test and update title to run2 and description Love Match load test with 1000 users.
 
-### Adding the benchmark drivers
+### Adding the signup driver
 
 - Checkout User signup driver to drivers directory.
 ```
@@ -55,3 +65,18 @@ cd signup
 mvn tomcat7:run -Dmongo.config.host=127.0.0.1
 ```
 - Check the driver is loaded by creating a new test. See in the Test Definition dropdown that it appears.
+### Loading 1000 Users
+- Create new signup test.
+- Update mongodb location.
+```
+mongo.test.host=127.0.0.1:27017
+```
+- Update user last name to smith from test in User Details.
+- Update number of users to 10000 in signup load parameters.
+- Update signup delay to 5 milliseconds.
+- Create a new run to load 10000 users.
+- Run test.
+
+### Rerun Love Match Driver against Alfresco
+- Navigate to http://localhost:8080/alfresco/service/sample/lovematch to user count is 1004.
+- Return to benchmark and run LoveMatch run2 with a count of 400.
