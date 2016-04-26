@@ -33,13 +33,7 @@ import org.apache.http.client.methods.HttpGet;
 
 /**
  * Event processor that calls the love match api.
- * <p/>
- * <h1>Input</h1><br/>
- * Username of user to create
- * <p/>
- * <h1>Data</h1><br/>
- * Collection containing users. User* will be marked as created.
- * <p/>
+ * 
  * <h1>Actions</h1><br/>
  * Http get to the love match api,which registers success when a page response
  * is 200 ok.

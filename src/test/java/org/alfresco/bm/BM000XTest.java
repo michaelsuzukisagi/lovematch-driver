@@ -152,18 +152,15 @@ public class BM000XTest extends BMTestRunnerListenerAdaptor implements TestConst
                 2, resultService.countResultsByEventName("scheduleProcesses"));
         assertEquals(
                 "Incorrect number of events: " + "executeProcess",
-                200, resultService.countResultsByEventName("executeProcess"));
+                200, resultService.countResultsByEventName("getLoveMatch"));
         // 203 events in total
         assertEquals("Incorrect number of results.", 203, resultService.countResults());
-        // Check that we got the failure rate correct ~30%
-        long failures = resultService.countResultsByFailure();
-        assertEquals("Failure rate out of bounds. ", 60.0, (double) failures, 15.0);
         
         // Get the summary CSV results for the time period and check some of the values
         String summary = BMTestRunner.getResultsCSV(resultsAPI);
         logger.info(summary);
         assertTrue(summary.contains(",,scheduleProcesses,     2,"));
-        assertTrue(summary.contains(",,executeProcess,   200,"));
+        assertTrue(summary.contains(",,getLoveMatch,   200,"));
         
         // Get the chart results and check
         String chartData = resultsAPI.getTimeSeriesResults(0L, "seconds", 1, 10, true);

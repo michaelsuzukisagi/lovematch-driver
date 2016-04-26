@@ -113,12 +113,7 @@
         <constructor-arg name="numberOfCalls" value="${proc.processCount}"/>
         <property name="chart" value="true" />
     </bean>
-<!--     <bean id="event.executeProcess" class="org.alfresco.bm.process.ExecuteProcess" parent="event.base" >
-        <constructor-arg name="sessionService" ref="sessionService" />
-        <constructor-arg name="processDataDAO" ref="processDataDAO" />
-        <constructor-arg name="testFileService" ref="testFileService" />
-        <property name="chart" value="true" />
-    </bean> -->
+
     <bean id="producer.processDone" class="org.alfresco.bm.event.producer.TerminateEventProducer" parent="producer.base" />
     
 </beans>
