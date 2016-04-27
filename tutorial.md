@@ -66,7 +66,7 @@ mvn tomcat7:run -Dmongo.config.host=127.0.0.1
 ```
 - Check the driver is loaded by creating a new test. See in the Test Definition dropdown that it appears.
 ### Loading 1000 Users
-- Create new signup test.
+- Create a new signup test.
 - Update mongodb location.
 ```
 mongo.test.host=127.0.0.1:27017
